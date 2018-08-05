@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RedirectLazer : MonoBehaviour
+public class RedirectLaser : MonoBehaviour
 {
     public GameObject[] LaserSources;
     public GameObject Shield;
@@ -22,7 +22,7 @@ public class RedirectLazer : MonoBehaviour
     {
 
     }
-    public void CreateLazer()
+    public void CreateLaser()
     {
         //Debug.Log();
         anim = GetComponent<Animator>();
@@ -32,7 +32,7 @@ public class RedirectLazer : MonoBehaviour
         LaserSources[CurrentLaserIndex].SetActive(true);
         Shield.SetActive(true);
     }
-    public void StopLazer()
+    public void StopLaser()
     {
         // Debug.Log(Direction);
         foreach (GameObject Laser in LaserSources)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class RangedEnemy : MonoBehaviour {
+public class EnemyAI: MonoBehaviour {
 
     public GameObject[] Players;
     public Transform PlayerTrans;

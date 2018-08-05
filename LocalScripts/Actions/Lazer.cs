@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class Lazer : MonoBehaviour
+public class Laser : MonoBehaviour
 {
     public GameObject TempHit;
     private LineRenderer lr;
@@ -29,8 +29,8 @@ public class Lazer : MonoBehaviour
             if (hit.collider.gameObject.CompareTag("Laser") || hit.collider.gameObject.name.Contains("Laser"))
             {
                 TempHit = hit.collider.gameObject;
-                if (TempHit.GetComponent<RedirectLazer>())
-                    hit.collider.gameObject.GetComponent<RedirectLazer>().CreateLazer();
+                if (TempHit.GetComponent<RedirectLaser>())
+                    hit.collider.gameObject.GetComponent<RedirectLaser>().CreateLazer();
                 if (TempHit.GetComponent<NetworkEventTrigger>())
                     TempHit.GetComponent<NetworkEventTrigger>().LaserSwitchOn();
                 else if (TempHit.GetComponent<TriggerEvent>())
@@ -40,8 +40,8 @@ public class Lazer : MonoBehaviour
             else if(TempHit !=null && hit.collider.gameObject != TempHit)
             {
                // Debug.Log("off"+ TempHit.name+ hit.collider.gameObject.name);
-                if (TempHit.GetComponent<RedirectLazer>())
-                    TempHit.GetComponent<RedirectLazer>().StopLazer();
+                if (TempHit.GetComponent<RedirectLaser>())
+                    TempHit.GetComponent<RedirectLaser>().StopLazer();
 
                 if(TempHit.GetComponent<NetworkEventTrigger>())
                     TempHit.GetComponent<NetworkEventTrigger>().LaserSwitchOff();
