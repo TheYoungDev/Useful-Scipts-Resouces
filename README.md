@@ -97,16 +97,7 @@ Event Based Scripts:
 	
 * SeamlessPortal.cs
 	
-	Creates/render texture during runtime and uses players position/rotation to display the information on the other side of the portal.
-	
-* EnemyAI.cs
-	
-	-Enemy AI script that controls the AIs behaviour.
-		-ranaged or meele
-		-attack range
-		-chase range
-		-normal pathing/patroling
-		-vision range i.e can only see players if in 180deg field of view.
+	Creates/render texture during runtime and uses players position/rotation to display the information on the other side of the portal.	
 
 * RedirectLaser.cs
 	
@@ -119,6 +110,15 @@ Event Based Scripts:
 * TriggerEvent.cs
 	
 	Triggers events like opening doors activiating switches reaching a certain destination/time.
+	
+* EnemyAI.cs
+	
+	- Enemy AI script that controls the AIs behaviour.
+		- ranaged or meele
+		- attack range
+		- chase range
+		- normal pathing/patroling
+		- vision range i.e can only see players if in 180deg field of view.
 
 
 
