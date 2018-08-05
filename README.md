@@ -120,7 +120,80 @@ Event Based Scripts:
 		- normal pathing/patroling
 		- vision range i.e can only see players if in 180deg field of view.
 
+## Network Scripts
 
+The follow scripts are for network execution and do not contain functionaility for local applications.
+
+
+
+### General
+Scripts that can be useful in most  network projects:
+
+* AssignAuth:
+	
+	- Assign Network Authority Over an object to all the player to determine the state of the object across the network.
+
+* DontDestoryOnLoad:
+	
+	- Mantain scripts/objects when transitioning to a different scene.
+
+* NetworkDataSync:
+	
+	- Sync Data between Clients
+	
+* NetworkDisable:
+	
+	- Disable Objects/scripts if the client does not own the objects/scripts.
+	
+* NetworkPlayer:
+	
+	- Similar to NetworkDisable but is speafic to player data.
+	
+* NetworkPlayerManager
+
+	- Manages Network Player allows player to create/control objects with Authority.
+	
+* PlayerConnectionObject
+
+	- Old NetworkPlayerManager slight differences.
+
+
+### Actions
+Event Based Scripts:
+
+
+* NetworkObject:
+
+	- Allow any player to pickup and throw any object with the related script.
+	
+* NetworkPortal:
+	
+	- Networked portal ability.
+	- Portals can be used by anyoen but are linked based on client that shot them.
+
+* NetworkRewindManger:
+	
+	- Rewind/freeze Time for certain objects acroos all clients.
+
+### Low Level Scripts
+
+Network Packet Management Scripts: The follow scripts assume an authuritive network inwhich data from th client to the server and vice versa, but information is never set between clients.
+
+
+* NetworkPacketManager.cs
+	
+	- Manage Recieved / Sent Protobuf packets.
+	- Configure server tick rate
+	- Creates a queue of recieved packages
+	- packets are managed using timestamps.
+	- Serialize and Deserialize data
+	- Queue and dequeue packets when packets are recieved and managed.
+	
+* NetworkPacketController.cs
+	
+	- Define protobuff structure for recieved/sent packets.
+	- Use timestamps to determine order/discard outdated information
+	- Configure what actions are taken when packets are recieved.
 
 
 
