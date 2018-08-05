@@ -12,30 +12,30 @@ Scripts that can be useful in most projects:
 
 * CameraExploreMovement:
 
-	Script that allows camera to move freely with the use of mouse and wasd. Great for exploreing scenes.
+	- Script that allows camera to move freely with the use of mouse and wasd. Great for exploreing scenes.
 	
 * ConsoleCommandManager:
 	
-	Script that allows the user to enter commands during runtime to execute fuctions and access/edit object/project information. 
+	- Script that allows the user to enter commands during runtime to execute fuctions and access/edit object/project information. 
 
 * TestFunction:
 	
-	Use to test ConsoleCommandManager.cs
+	- Use to test ConsoleCommandManager.cs
 
 ### GUI
 Menu, Hud, General GUI Scripts:
 
 * CrossHair:
 	
-	Draw CrossHair on the center of the users screen.
+	- Draw CrossHair on the center of the users screen.
 
 * MainMenu:
 	
-	Script to Manage a Main Menu. 
+	- Script to Manage a Main Menu. 
 
 * Pause_Menu:
 	
-	Similar to MainMenu.cs but with added features to pause the game state.
+	- Similar to MainMenu.cs but with added features to pause the game state.
 
 
 ### Actions
@@ -45,23 +45,23 @@ Event Based Scripts:
 
 * DieOnTrigger.cs
 	
-	Trigger Player Death Event if triggered.
+	- Trigger Player Death Event if triggered.
 	
 * GravityGenerator.cs
 	
-	Gravity Beam that disables gravity and pushes the physics based object in a certian direction.
+	- Gravity Beam that disables gravity and pushes the physics based object in a certian direction.
 	
 * HotColdEffect.cs
 	
-	Modifies the physical attributes of an object by making it more "bouncy" or "slipery".
+	- Modifies the physical attributes of an object by making it more "bouncy" or "slipery".
 	
 * JumpPad.cs
 	
-	Launches object with desired force in a desired direction.
+	- Launches object with desired force in a desired direction.
 	
 * Laser.cs
 	
-	Manages Laser beam allows redirection/activation using the laser.
+	- Manages Laser beam allows redirection/activation using the laser.
 	
 * LocalMindControl.cs
 	
@@ -73,43 +73,43 @@ Event Based Scripts:
 	
 * OldRewindManager.cs
 	
-	Manages the history of an object and allows the player to freeze the object in time aswell as rewind its position/rotation.
+	- Manages the history of an object and allows the player to freeze the object in time aswell as rewind its position/rotation.
 	
 * OnCollisionDestory.cs
 	
-	Destory Object on Collision
+	- Destory Object on Collision
 	
 * OnTriggerKill.cs
 	
-	Trigger Death() when triggered.
+	- Trigger Death() when triggered.
 	
 * OpenDoor.cs
 	
-	Track switches and open/close a door if all triggers are activiated/deactiviated
+	- Track switches and open/close a door if all triggers are activiated/deactiviated
 	
 * PortalAbility.cs
 	
-	Create and Move portals where the player aims their cursor.
+	- Create and Move portals where the player aims their cursor.
 	
 * PortalScript.cs
 	
-	Link Portals to one another as to allow the player to teleport to the other portal when touched.
+	- Link Portals to one another as to allow the player to teleport to the other portal when touched.
 	
 * SeamlessPortal.cs
 	
-	Creates/render texture during runtime and uses players position/rotation to display the information on the other side of the portal.	
+	- Creates/render texture during runtime and uses players position/rotation to display the information on the other side of the portal.	
 
 * RedirectLaser.cs
 	
-	Redirect Lasers beam to continue it in another direction.
+	- Redirect Lasers beam to continue it in another direction.
 	
 * TriggerCheckPoint.cs
 	
-	Triggers a checkpoint inwhich the player will return to if they die.
+	- Triggers a checkpoint inwhich the player will return to if they die.
 	
 * TriggerEvent.cs
 	
-	Triggers events like opening doors activiating switches reaching a certain destination/time.
+	- Triggers events like opening doors activiating switches reaching a certain destination/time.
 	
 * EnemyAI.cs
 	
