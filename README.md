@@ -11,21 +11,23 @@ Scripts that can be useful in most projects:
 
 
 * CameraExploreMovement:
+
 	Script that allows camera to move freely with the use of mouse and wasd. Great for exploreing scenes.
-* ConsoleCommandManager
+	
+* ConsoleCommandManager:
 	Script that allows the user to enter commands during runtime to execute fuctions and access/edit object/project information. 
-* TestFunction
+* TestFunction:
 	Use to test ConsoleCommandManager.cs
 
 
 ### GUI
 Menu, Hud, General GUI Scripts:
 
-* CrossHair.cs
+* CrossHair:
 	Draw CrossHair on the center of the users screen.
-* MainMenu
+* MainMenu:
 	Script to Manage a Main Menu. 
-* Pause_Menu
+* Pause_Menu:
 	Similar to MainMenu.cs but with added features to pause the game state.
 
 
