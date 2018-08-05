@@ -9,31 +9,31 @@ The follow scripts are for local execution and do not contain functionaility for
 ### General Scripts
 Scripts that can be useful in most projects:
 
-```
+
 *CameraExploreMovement:
 	Script that allows camera to move freely with the use of mouse and wasd. Great for exploreing scenes.
 *ConsoleCommandManager
 	Script that allows the user to enter commands during runtime to execute fuctions and access/edit object/project information. 
 *TestFunction
 	Use to test ConsoleCommandManager.cs
-```
+
 
 ### GUI
 Menu, Hud, General GUI Scripts:
-```
+
 *CrossHair.cs
 	Draw CrossHair on the center of the users screen.
 *MainMenu
 	Script to Manage a Main Menu. 
 *Pause_Menu
 	Similar to MainMenu.cs but with added features to pause the game state.
-```
+
 
 ### Actions
 
 Event Based Scripts:
 
-```
+
 *DieOnTrigger.cs
 	Trigger Player Death Event if triggered.
 *GravityGenerator.cs
@@ -77,7 +77,7 @@ Event Based Scripts:
 	Triggers a checkpoint inwhich the player will return to if they die.
 *TriggerEvent.cs
 	Triggers events like opening doors activiating switches reaching a certain destination/time.
-```
+
 
 
 
