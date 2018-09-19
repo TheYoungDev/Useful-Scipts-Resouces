@@ -169,11 +169,11 @@ Event Based Scripts:
 * NetworkPortal:
 	
 	- Networked portal ability.
-	- Portals can be used by anyoen but are linked based on client that shot them.
+	- Portals can be used by anyone but are linked based on client that shot them.
 
 * NetworkRewindManger:
 	
-	- Rewind/freeze Time for certain objects acroos all clients.
+	- Rewind/freeze Time for certain objects across all clients.
 
 ### Low Level Scripts
 
