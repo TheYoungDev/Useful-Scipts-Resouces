@@ -65,11 +65,11 @@ Event Based Scripts:
 	
 * LocalMindControl.cs
 	
-	Controls Enemy AI Objects/bots mimic players movement.
+	- Controls Enemy AI Objects/bots mimic players movement.
 	
 * MoveingPlatform.cs
 	
-	Platform that moves between checkpoints players will stick to the platform aslong as it doenst have the Icy attribute.
+	- Platform that moves between checkpoints players will stick to the platform aslong as it doenst have the Icy attribute.
 	
 * OldRewindManager.cs
 	
