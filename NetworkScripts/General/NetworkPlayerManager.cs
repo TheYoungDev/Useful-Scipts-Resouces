@@ -7,7 +7,7 @@ using UnityEngine.Networking;
 public class NetworkPlayerManager : NetworkBehaviour{
 
     
-    //public Transform StartPos;
+
     // Use this for initialization
     void Start()
     {
@@ -15,14 +15,10 @@ public class NetworkPlayerManager : NetworkBehaviour{
         if (!isLocalPlayer)
         {
             return;
-            
-            //NetworkServer.Spawn(PlayerPrefab);
+        
         }
         CmdSpawnMyPlayer();
 
-
-        //Instantiate(PlayerPrefab);
-        //Network.Instantiate(PlayerPrefab, StartPos.position, StartPos.rotation,1);
     }
     public GameObject NetworkPlayerPrefab;
 
@@ -37,9 +33,6 @@ public class NetworkPlayerManager : NetworkBehaviour{
     void CmdSpawnMyPlayer()
     {
         GameObject go = Instantiate(NetworkPlayerPrefab);
-        
-        //NetworkServer.SpawnWithClientAuthority(treeGo, conn);
-        //NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
         go.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
     }
 }

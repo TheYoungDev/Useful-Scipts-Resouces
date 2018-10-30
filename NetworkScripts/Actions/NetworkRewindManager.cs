@@ -14,8 +14,6 @@ public class NetworkRewindManager : NetworkBehaviour
     public bool canPause = false;
     public bool PlatForm = false;
     public bool CoolDownOver = true;
-   // public 
-    //public GameObject[] tempArray2;
 
     public GameObject[] RewindObjects;
 
@@ -26,15 +24,13 @@ public class NetworkRewindManager : NetworkBehaviour
     public int RewindSecs = 60;
     public int PauseLimit = 20;
     public int CoolDownTime = 10;
-    public bool MouseHit = false; //can be removed
     public PositionRotation PositionRotation;
 
     // Use this for initialization
     void Start()
     {
         GameObject[] Temp1 = GameObject.FindGameObjectsWithTag("PickUp");
-        GameObject[] Temp2 = GameObject.FindGameObjectsWithTag("PlatForm");
-        //RewindObjects = GameObject.FindGameObjectsWithTag("PickUp");//.Concat(tempArray2).ToArray();                                                          // }
+        GameObject[] Temp2 = GameObject.FindGameObjectsWithTag("PlatForm");                                                        
         RewindObjects = Temp1.Concat(Temp2).ToArray();
 
         if (RewindObjects.Length == 0)
@@ -58,45 +54,35 @@ public class NetworkRewindManager : NetworkBehaviour
     {
         if (!canPause && Pause)
         {
-            //CmdPauseTime();
+           
         }
         if (Input.GetButtonDown("Fire2") && TimeReverse)
         {
-            //Debug.Log("rewind1");
+            
             foreach (GameObject Item in RewindObjects)
             {
                 if (isLocalPlayer)
                     CmdSetAuthority(Item.GetComponent<NetworkIdentity>(), this.GetComponent<NetworkIdentity>());
-                //Item.GetComponent<NetworkRewindObject>().CmdTest();
+                
                 Item.GetComponent<NetworkRewindObject>().StartRewind();
             }
-            //Debug.Log("test1");
-            //CmdStartRewind();
-            /*RpcStartRewind();
-            if (!isServer && hasAuthority)
-                StartRewind();*/
+
         }
         if (Input.GetButtonUp("Fire2") && TimeReverse)
         {
-            // Debug.LogErrorFormat("test2" );
+
             foreach (GameObject Item in RewindObjects)
             {
-                //if(!isServer)
-                    //CmdRemoveAuthority(Item.GetComponent<NetworkIdentity>(), this.GetComponent<NetworkIdentity>());
+
                 Item.GetComponent<NetworkRewindObject>().StopRewind();
                 if (isLocalPlayer)
                     CmdRemoveAuthority(Item.GetComponent<NetworkIdentity>(), this.GetComponent<NetworkIdentity>());
-                //Item.GetComponent<NetworkRewindObject>().CmdTest();
+               
             }
-            //CmdStopRewind();
-            /*RpcStopRewind();
-            if (!isServer && hasAuthority)
-                StopRewind();*/
+
         }
         if (Input.GetButtonDown("Fire2") && canPause)
         {
-
-            //Pause = !Pause;
             foreach (GameObject Item in RewindObjects)
             {
                 bool TempBool = false;
@@ -112,31 +98,20 @@ public class NetworkRewindManager : NetworkBehaviour
                         TempBool = true;
                 }
                 CmdPauseTime(TempBool, Item);
-               // Item.GetComponent<NetworkRewindObject>().PauseTime();
-            }
-            //Debug.Log("test3"+ Pause);
 
-           // PauseTime();
-            /*RpcPauseTime(Pause);
-            if (!isServer && hasAuthority)
-                PauseTime(Pause);*/
+            }
+
         }
         if (Input.GetButtonUp("Fire2") && canPause)
         {
-            //Pause = !Pause;
             foreach (GameObject Item in RewindObjects)
             {
                 if (isLocalPlayer)
                     CmdRemoveAuthority(Item.GetComponent<NetworkIdentity>(), this.GetComponent<NetworkIdentity>());
 
-               // Item.GetComponent<NetworkRewindObject>().PauseTime();
+            
             }
-            //Debug.Log("test3"+ Pause);
 
-            // PauseTime();
-            /*RpcPauseTime(Pause);
-            if (!isServer && hasAuthority)
-                PauseTime(Pause);*/
         }
 
 
@@ -174,7 +149,7 @@ public class NetworkRewindManager : NetworkBehaviour
                 PositionRotationsList[i].RemoveAt(PositionRotations.Count - 1);
         }
         if (!Pause && PositionRotation.position != item.transform.position)
-        { //&& temp.position != transform.position
+        { 
 
                 PositionRotationsList[i].Insert(0, new PositionRotation(item.transform.position, item.transform.rotation));
         }
@@ -189,12 +164,7 @@ public class NetworkRewindManager : NetworkBehaviour
         _item.transform.position = _position;
         _item.transform.rotation = _rotation;
     }
-    /*[Command]
-    public void CmdServerRewind(GameObject _item, Vector3 _position, Quaternion _rotation)
-    {
-        _item.transform.position = _position;
-        _item.transform.rotation = _rotation;
-    }*/
+
     [Command]
     public void CmdRewind()
     {
@@ -212,9 +182,7 @@ public class NetworkRewindManager : NetworkBehaviour
             else
             {
                 CmdStopRewind();
-                /*RpcStopRewind();
-                if (!isServer && hasAuthority)
-                    StopRewind();*/
+
             }
             i++;
         }
@@ -223,7 +191,7 @@ public class NetworkRewindManager : NetworkBehaviour
     [Command]
     public void CmdStartRewind()
     {
-        //Debug.Log("test2");
+      
         foreach (GameObject item in RewindObjects)
         {
             if (item.CompareTag("PlatForm"))
@@ -244,7 +212,7 @@ public class NetworkRewindManager : NetworkBehaviour
     [ClientRpc]
     public void RpcStartRewind()
     {
-        //Debug.Log("test3");
+
         foreach (GameObject item in RewindObjects)
         {
 
@@ -282,26 +250,7 @@ public class NetworkRewindManager : NetworkBehaviour
         }
         RewindTime = true;
     }
-    public void StartRewindObj(GameObject HitObject)
-    {/*
-        int i = 0;
-        foreach (GameObject item in RewindObjects)
-        {
 
-            if (item.CompareTag("PlatForm"))
-            {
-
-                // item.GetComponent<MoveingPlatform>().isMoving = false;
-            }
-            RewindTime = true;
-
-
-            if (item.CompareTag("PickUp"))
-            {
-                item.GetComponent<Rigidbody>().isKinematic = true;
-            }
-        }*/
-    }
 
     [Command]
     public void CmdStopRewind()
@@ -323,8 +272,7 @@ public class NetworkRewindManager : NetworkBehaviour
         }
 
         RpcStopRewind();
-        // CoolDownOver = false;
-        // StartCoroutine(CoolDown());
+
     }
     [ClientRpc]
     public void RpcStopRewind()
@@ -344,10 +292,7 @@ public class NetworkRewindManager : NetworkBehaviour
                 item.GetComponent<Rigidbody>().isKinematic = false;
             }
         }
-       
 
-        // CoolDownOver = false;
-        // StartCoroutine(CoolDown());
     }
     public void StopRewind()
     {
@@ -366,78 +311,39 @@ public class NetworkRewindManager : NetworkBehaviour
                 item.GetComponent<Rigidbody>().isKinematic = false;
             }
         }
-        
 
-        // CoolDownOver = false;
-        // StartCoroutine(CoolDown());
     }
-    public void StopRewindObj(GameObject HitObject)
-    {
-        /*
-        RewindTime = false;
-        foreach (GameObject item in RewindObjects)
-        {
 
-            if (item.CompareTag("PlatForm"))
-            {
-                gameObject.GetComponent<MoveingPlatform>().StartMoving();
-
-            }
-
-            if (item.CompareTag("PickUp"))
-            {
-                item.GetComponent<Rigidbody>().isKinematic = false;
-            }
-        }
-        */
-
-        // CoolDownOver = false;
-        // StartCoroutine(CoolDown());
-    }
 
     [Command]
     public void CmdPauseTime(bool _Pause, GameObject Item)
     {
-        //Debug.Log("freeze0"+ Pause);
+
         if (_Pause)
         {
             if (Item.CompareTag("PickUp"))
             {
-                //Debug.Log("freeze1");
+            
                 Item.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             }
             if (Item.CompareTag("PlatForm"))
             {
                 Item.GetComponent<MoveingPlatform>().isMoving = false;
             }
-            //int i = 0;
-            /* foreach (GameObject item in RewindObjects)
-             {
-                 if (item.CompareTag("PickUp"))
-                 {
-                     //Debug.Log("freeze1");
-                     item.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                 }
-                 if (item.CompareTag("PlatForm"))
-                 {
-                     item.GetComponent<MoveingPlatform>().isMoving = false;
-                 }
-             }*/
+
         }
         if (!_Pause)
         {
-           // foreach (GameObject item in RewindObjects)
-           // {
-                if (Item.CompareTag("PickUp"))
-                {
-                // Debug.LogErrorFormat("unfreeze0");
-                    Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                }
-                if (Item.CompareTag("PlatForm"))
-                {
-                    Item.GetComponent<MoveingPlatform>().isMoving = true;
-                }
-            //}
+
+            if (Item.CompareTag("PickUp"))
+            {
+                Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            }
+            if (Item.CompareTag("PlatForm"))
+            {
+                Item.GetComponent<MoveingPlatform>().isMoving = true;
+            }
+         
         }
         RpcPauseTime(_Pause, Item);
 
@@ -450,41 +356,27 @@ public class NetworkRewindManager : NetworkBehaviour
         {
             if (Item.CompareTag("PickUp"))
             {
-                //Debug.Log("freeze1");
+               
                 Item.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
             }
             if (Item.CompareTag("PlatForm"))
             {
                 Item.GetComponent<MoveingPlatform>().isMoving = false;
             }
-            //int i = 0;
-            /* foreach (GameObject item in RewindObjects)
-             {
-                 if (item.CompareTag("PickUp"))
-                 {
-                     //Debug.Log("freeze1");
-                     item.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                 }
-                 if (item.CompareTag("PlatForm"))
-                 {
-                     item.GetComponent<MoveingPlatform>().isMoving = false;
-                 }
-             }*/
+
         }
         if (!_Pause)
         {
-            // foreach (GameObject item in RewindObjects)
-            // {
+
             if (Item.CompareTag("PickUp"))
-            {
-                // Debug.LogErrorFormat("unfreeze0");
+            { 
                 Item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
             if (Item.CompareTag("PlatForm"))
             {
                 Item.GetComponent<MoveingPlatform>().isMoving = true;
             }
-            //}
+
         }
 
 
@@ -498,12 +390,12 @@ public class NetworkRewindManager : NetworkBehaviour
             {
                 if (item.CompareTag("PickUp"))
                 {
-                    //Debug.LogErrorFormat("freeze");
+                   
                     item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
                 }
                 if (item.CompareTag("PlatForm"))
                 {
-                    // item.GetComponent<MoveingPlatform>().isMoving = false;
+                    
                 }
             }
 
@@ -518,51 +410,10 @@ public class NetworkRewindManager : NetworkBehaviour
                 }
                 if (item.CompareTag("PlatForm"))
                 {
-                    //item.GetComponent<MoveingPlatform>().isMoving = true;
+                    
                 }
             }
         }
-    }
-    public void PauseTimeObj(GameObject HitObject)
-    {/*
-        Debug.LogErrorFormat("freeze0");
-        Pause = !Pause;
-        if (Pause)
-        {
-            int i = 0;
-            foreach (GameObject item in RewindObjects)
-            {
-                if (item.CompareTag("PickUp"))
-                {
-                    Debug.LogErrorFormat("freeze");
-                    item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-                }
-                if (item.CompareTag("PlatForm"))
-                {
-                    // item.GetComponent<MoveingPlatform>().isMoving = false;
-                }
-            }
-
-        }
-        if (!Pause)
-        {
-
-            foreach (GameObject item in RewindObjects)
-            {
-                if (item.CompareTag("PickUp"))
-                {
-                    item.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                }
-                if (item.CompareTag("PlatForm"))
-                {
-                    //item.GetComponent<MoveingPlatform>().isMoving = true;
-                }
-            }
-
-
-        }*/
-
-
     }
 
     IEnumerator PauseTimeout()
@@ -578,13 +429,6 @@ public class NetworkRewindManager : NetworkBehaviour
         print(Time.time);
     }
 
-    /*IEnumerator CoolDown()
-    {
-        print(Time.time);
-        yield return new WaitForSeconds(CoolDownTime);
-        CoolDownOver = true;
 
-        print(Time.time);
-    }*/
 }
 
