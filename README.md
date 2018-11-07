@@ -1,6 +1,7 @@
 # Useful Scripts
 
 This repo contains scripts that could be reused for a varitey of projects.
+Note: Many of the scripts do not have complete commits and may contain previous functions that are no longer required.
 
 ## Local Scripts
 
