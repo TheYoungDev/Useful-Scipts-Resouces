@@ -49,16 +49,7 @@ public class EnemyAI: MonoBehaviour {
         else if (PlayerTrans.GetComponent<LocalPlayerMovement>())
             PlayerTrans.GetComponent<LocalPlayerMovement>().Death();
     }
-    /* private void OnTriggerEnter(Collider other)
-     {
-         if(other.transform.gameObject.CompareTag("Player"))
-             Spotted = true;
-     }
-     private void OnTriggerExit(Collider other)
-     {
-         if (other.transform.gameObject.CompareTag("Player"))
-             Spotted = false;
-     }*/
+
     // Update is called once per frame
     void Update () {
         if (gameObject.GetComponent<LocalMindControl>().Enabled == true)
@@ -76,17 +67,11 @@ public class EnemyAI: MonoBehaviour {
             return;
         }
            
-        //RaycastHit hit;
-        //Vector3 p1 = transform.position;
 
-        //if(Physics.SphereCast(p1, MaxRange, transform.forward,out hit, 1))
-        // {
-        //
-        //}
         if (GameObject.FindGameObjectWithTag("Player"))
         {
             if (PlayerTrans == null)
-                PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;//.transform.GetChild(2).
+                PlayerTrans = GameObject.FindGameObjectWithTag("Player").transform;
 
         }
         else
@@ -96,44 +81,30 @@ public class EnemyAI: MonoBehaviour {
 
         Vector3 targetDir = PlayerTrans.position - transform.position;
         float angleToPlayer = (Vector3.Angle(targetDir, transform.forward));
-        //Vector3 fromPosition = transform.position;
-        //Vector3 toPosition = PlayerTrans.transform.position;
-        //Vector3 direction = toPosition - fromPosition;
         RaycastHit hit;
-
         distance = Vector3.Distance(PlayerTrans.position, transform.position);
-
+        
+        // Check if player is in 180° FOV
         if (angleToPlayer >= -90 && angleToPlayer <= 90 && distance < MoveRange)
-        { // 180° FOV
-            Debug.Log("Spootted?");
+        { 
+           
             if (Physics.Linecast(FireLocation.position, PlayerTrans.position,out hit))
             {
                 Debug.DrawLine(FireLocation.position, PlayerTrans.position, Color.blue);
                 Debug.Log("Hit: " + hit.transform.gameObject.name);
                 if (hit.transform.gameObject.CompareTag("Player"))
                 {
-                    
                     Spotted = true;
-                    //Anim.SetBool("Chase", true);
-                }
-                else
-                {
-                    //Debug.Log("Player NOT in sight!");
-                    
                 }
             }
-
-
-
         }
+        //check if distance is too far away
         if (distance >= MoveRange)
         {
-            //Debug.Log("Player NOT in sight!");
             Spotted = false;
         }
-        //Debug.Log(distance);
-
-
+        
+        //log agents destination
         Debug.Log("agent dest: "+agent.destination);
 
         if (Spotted && distance < MoveRange)
@@ -146,9 +117,7 @@ public class EnemyAI: MonoBehaviour {
             {
                 agent.Stop();
                 //face the target and attack
-                   AttackPlayer();
-
-
+                AttackPlayer();
             }
             else
             {
@@ -160,8 +129,7 @@ public class EnemyAI: MonoBehaviour {
 
 
         //reset position
-        //Debug.Log(Vector3.Distance(StartPos, transform.position));
-        if (!Spotted && Vector3.Distance(StartPos, transform.position) >1f)//&& !HaveCheckPoints
+        if (!Spotted && Vector3.Distance(StartPos, transform.position) >1f)
         {
 
             Anim.SetBool("Attack", false);
@@ -171,22 +139,10 @@ public class EnemyAI: MonoBehaviour {
             agent.SetDestination(StartPos);
             
         }
-        if (!Spotted && Vector3.Distance(StartPos, transform.position) <= 1f)//&& !HaveCheckPoints
+        if (!Spotted && Vector3.Distance(StartPos, transform.position) <= 1f)
         {
             Anim.SetBool("Pathing", false);
         }
-
-
-       /* if (HaveCheckPoints)
-        {
-            if (Vector3.Distance(transform.position, CurrentNavCheckpoint.position) <= FireRange)
-            {
-
-            }
-        }*/
-
-
-
 
     }
     public void Shoot()
@@ -199,31 +155,24 @@ public class EnemyAI: MonoBehaviour {
     }
         void AttackPlayer()
     {
-        //Vector3 direction = (PlayerTrans.position - transform.position).normalized;
+
         Debug.DrawLine( transform.position, PlayerTrans.position, Color.red);
-        //Quaternion lookRot = Quaternion.Lo(new Vector3(direction.x, 0, direction.y));
-        //transform.rotation = Quaternion.Slerp(transform.rotation, lookRot, Time.deltaTime * 5f);
         transform.LookAt(PlayerTrans.position);
         if (Time.time > nextFire) {
-            //Anim.SetBool("Attack", true);
             nextFire = Time.time + fireRate;
             Anim.SetBool("Attack", true);
             if (Projectile!=null) {
 
-                //Shoot();
             }
             else
             {
-                /*if(PlayerTrans.GetComponent<LocalPlayerMovement>())
-                    PlayerTrans.GetComponent<LocalPlayerMovement>().Death();
-                else if (PlayerTrans.GetComponent<playerNormalMovement>())
-                    PlayerTrans.GetComponent<playerNormalMovement>().Death();*/
+
             }
         }
     }
     public void PlayStep()
     {
-        //play audio Sounds
+        //play audio Sounds for stepping
     }
     public void SwitchCheckpoint()
     {
@@ -243,24 +192,18 @@ public class EnemyAI: MonoBehaviour {
     public void Death()
     {
         Anim.SetBool("Dead", true);
-        StartCoroutine(WaitToDeSpawn());
+        StartCoroutine(WaitToDie());
     }
-    IEnumerator WaitToDeSpawn()
+    IEnumerator WaitToDie()
     {
-       // print(Time.time);
         yield return new WaitForSeconds(5);
         Destroy(gameObject);
-       // print(Time.time);
+
     }
     private void OnDrawGizmos()
     {
-       // Gizmos.color = Color.green;
-       // Gizmos.DrawWireSphere(transform.position, MoveRange);
-       // Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(transform.position, FireRange);
-       // Gizmos.color = Color.blue;
-        //Gizmos.DrawWireSphere(transform.position, MinRange);
+        //draw FOV in editor
         Gizmos.DrawFrustum(transform.position+ new Vector3(0,1,0), 180f, MaxRange, MinRange,2f);
-       // Gizmos.DrawSphere
+
     }
 }
