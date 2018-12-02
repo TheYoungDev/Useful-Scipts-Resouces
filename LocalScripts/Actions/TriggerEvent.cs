@@ -4,22 +4,7 @@ using UnityEngine;
 
 public class TriggerEvent : MonoBehaviour
 {
-    /*public bool isSwitch = false;
-    public bool isRespawner = false;
-    public bool isEventTrigger = false;
-    public GameObject[] LookupObjects;
-    public Vector3[] ObjectPos;
-    // public GameObject MsgObject;
-    public string Animation1 = "PressurePlateDown";
-    public string Animation2 = "PressurePlateDown 0";
-    public bool isTriggered = false;
-    public bool StopAnim = false;
-    public AudioClip Sound1;
-    public AudioClip Sound2;
-    public GameObject[] Doors;
-    public int Interactions = 0;
-    public string colour = "Red";
-    private Animator anim;*/
+
     public bool isSwitch = true;
     public bool isRespawner = false;
     public bool isEventTrigger = false;
@@ -28,7 +13,7 @@ public class TriggerEvent : MonoBehaviour
     public GameObject[] LookupObjects;
     public Vector3[] ObjectPos;
     public GameObject Shield;
-    // public GameObject MsgObject;
+    
     public string Animation1 = "PressurePlateDown";
     public string Animation2 = "PressurePlateDown 0";
     public bool isTriggered = false;
@@ -134,7 +119,7 @@ public class TriggerEvent : MonoBehaviour
                 }
                 i++;
             }
-           // Object.transform.position = ObjectPos;
+          
 
         }
         if (isEventTrigger)
@@ -156,7 +141,7 @@ public class TriggerEvent : MonoBehaviour
     {
         anim.SetBool("Trigger", true);
         anim.SetBool("Activate", true);
-        //anim.Play(Animation1, -1, 0f);
+       
         AudioSource.PlayClipAtPoint(Sound1, transform.position);
         StopAnim = true;
         isTriggered = true;
@@ -207,13 +192,12 @@ public class TriggerEvent : MonoBehaviour
         if ((Interactions <= 0 && isSwitch == false && isEventTrigger))
         {
             isTriggered = false;
-            //anim.Play(Animation1, -1, 0f);
-           // AudioSource.PlayClipAtPoint(Sound1, transform.position);
+
             
 
             foreach (GameObject LookupItem in LookupObjects)
             {
-               // LookupItem.GetComponent<MoveingPlatform>().isMoving = false;
+              
                 LookupItem.GetComponent<MoveingPlatform>().StartMoving();
 
             }
